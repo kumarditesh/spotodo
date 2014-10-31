@@ -74,6 +74,8 @@ public class ShowTasks extends Activity {
             }
         });
 
+
+
         System.out.println("INITIATING...");
 
         // Fetch sample records if they exist
@@ -83,7 +85,7 @@ public class ShowTasks extends Activity {
 
         // Handle No Tasks Scenario
         if(null == taskList || taskList.size()<=0){
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(ShowTasks.this, android.R.layout.simple_list_item_1, tasks);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(ShowTasks.this, android.R.layout.simple_list_item_1, android.R.id.empty,  new String[]{});
             listview.setAdapter(adapter);
             return;
         }
