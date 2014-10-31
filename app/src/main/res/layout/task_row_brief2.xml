@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:stretchColumns="*"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#efefef"
+    android:orientation="horizontal"
+    android:id="@+id/">
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#f6f1eb"
+        android:baselineAligned="false"
+        android:layout_gravity="left">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="50dp"
+            android:id="@+id/priorityDisplay"
+            android:background="#ff8286ff"
+            android:minWidth="10dp"
+            android:focusableInTouchMode="false"
+            android:focusable="false"
+            android:layout_gravity="left"
+            android:cropToPadding="false" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="left">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView3"
+                android:layout_weight="4" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/textView4"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </TableRow>
+
+</TableLayout>
