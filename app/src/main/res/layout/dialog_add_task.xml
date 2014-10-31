@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/new_task"
+    android:gravity="center"
+    android:background="#434343"
+    android:baselineAligned="false"
+    android:alpha="0.8">
+<!--
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#efefef"
+        android:padding="0dp"
+        android:stretchColumns="*">
+        <TableRow android:layout_width="match_parent"
+            android:padding="0dp">
+            <TextView android:text="Add a new task"
+                android:layout_width="match_parent"
+                android:id="@+id/info"
+                android:background="#61ff8eb2"
+                android:textSize="20dp"
+                android:textIsSelectable="true"
+                android:padding="20dp"
+                android:gravity="center|top"
+                android:textColor="#ffff2f15" />
+        </TableRow>
+        <TableRow android:layout_marginTop="30dp"
+            android:layout_height="60dp"
+            android:padding="10dp">
+            <EditText android:layout_width="match_parent"
+                android:textSize="30dp"
+                android:hint="TITLE"
+                android:id="@+id/label"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:textIsSelectable="false"
+                android:textColor="#ababab"
+                android:editable="true" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <SeekBar
+                android:layout_width="match_parent"
+                android:id="@+id/priority_bar"
+                android:max="2"
+                android:padding="50dp"
+                android:clickable="true" />
+
+        </TableRow>-->
+        <!--
+        <SeekBar
+            android:id="@+id/frequency_slider"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:max="20"
+            android:progress="0"
+            android:secondaryProgress="0"
+            android:progressDrawable="@drawable/prioritybar_progress"
+            android:thumb="@drawable/seek_thumb"
+            />-->
+<!--
+    </TableLayout>-->
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:background="#efefef"
+        android:id="@+id/new_task">
+        <TextView
+            android:text="Add a new task"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/info"
+            android:background="#cdcdcd"
+            android:textSize="20sp"
+            android:textIsSelectable="true"
+            android:padding="0dp"
+            android:gravity="center"
+            android:textColor="#ffff2f15" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:textSize="30sp"
+            android:hint="TITLE"
+            android:layout_marginTop="30dp"
+            android:id="@+id/label"
+            android:maxLength="50"
+            android:maxLines="1"
+            android:textIsSelectable="false"
+            android:textColor="#ababab"
+            android:paddingLeft="30dp"
+            android:paddingTop="20dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="20dp"
+            android:padding="0dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp" />
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/priority_bar"
+            android:max="2"
+            android:clickable="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="DATE"
+                    android:id="@+id/textView"
+                    android:singleLine="true"
+                    android:padding="0dp"
+                    android:layout_gravity="center"
+                    android:textColor="#bcbcbc" />
+
+                <DatePicker
+                    android:layout_width="161dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/datePicker"
+                    android:calendarViewShown="false"
+                        android:importantForAccessibility="yes"
+                    android:minDate="current"
+                    android:scaleX="0.7"
+                    android:scaleY="0.7"
+                    android:layout_marginTop="-10dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="TIME"
+                    android:id="@+id/textView"
+                    android:singleLine="true"
+                    android:padding="0dp"
+                    android:layout_gravity="center"
+                    android:textColor="#bcbcbc" />
+                <TimePicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/timePicker"
+                    android:scaleX="0.7"
+                    android:scaleY="0.7"
+                    android:layout_marginTop="-10dp"/>
+                </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
