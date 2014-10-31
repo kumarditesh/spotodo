@@ -6,7 +6,7 @@ package com.self.app.pojo;
 public class Task {
 
     public enum priority{
-        HIGH(1), MEDIUM(2), LOW(3);
+        HIGH(0), MEDIUM(1), LOW(2);
 
         private final int value;
 
@@ -27,7 +27,7 @@ public class Task {
     private long  deadline;
     private priority prio;
     private taskstatus status;
-    private int isPinned;
+    private int isPinned = 0;
 
 
     public int getIsPinned() {
@@ -90,13 +90,24 @@ public class Task {
 
     public Task() {}
 
-    public Task(int id, String label, long createdTime, long deadline, priority prio, taskstatus status) {
+    public Task(int id, String label, long createdTime, long deadline, priority prio, taskstatus status, int isPinned) {
         this.id = id;
         this.label = label;
         this.createdTime = createdTime;
         this.deadline = deadline;
         this.prio = prio;
         this.status = status;
+        this.isPinned = isPinned;
+    }
+
+    public Task(String label, long createdTime, long deadline, priority prio, taskstatus status, int isPinned) {
+        this.id = id;
+        this.label = label;
+        this.createdTime = createdTime;
+        this.deadline = deadline;
+        this.prio = prio;
+        this.status = status;
+        this.isPinned = isPinned;
     }
 
     @Override

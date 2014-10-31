@@ -24,12 +24,13 @@ public class DBAccessHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // Create DB If not exists. First time use.
+        System.out.println("EXECUTING QUERY: "+Constants.Q_CREATETABLE_TASKS);
         db.execSQL(Constants.Q_CREATETABLE_TASKS);
+        System.out.println("CREATED TABLE..");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
     public List<Task> fetchAllTasks() {
@@ -47,7 +48,7 @@ public class DBAccessHelper extends SQLiteOpenHelper {
                 task = new Task();
                 task.setId(cur.getInt(0));
                 task.setLabel(cur.getString(1));
-                task.setPrio(Task.priority.valueOf(cur.getString(2)));
+                task.setPrio(Task.priority.values()[cur.getInt(2)]);
                 task.setCreatedTime(cur.getLong(3));
                 task.setDeadline(cur.getLong(4));
                 task.setStatus(Task.taskstatus.valueOf(cur.getString(5)));
@@ -67,6 +68,7 @@ public class DBAccessHelper extends SQLiteOpenHelper {
     public void insertTask(Task task){
         SQLiteDatabase db = this.getReadableDatabase();
         SQLiteStatement stmt = db.compileStatement(Constants.Q_INSERT_TASK);
+        System.out.println("INSERTING: "+task);
         stmt.bindString(1, task.getLabel());
         stmt.bindLong(2, task.getPrio().getValue());
         stmt.bindLong(3, task.getCreatedTime());

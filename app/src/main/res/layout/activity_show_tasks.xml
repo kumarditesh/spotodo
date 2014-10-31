@@ -22,15 +22,13 @@
         android:padding="10dp">
         </ListView>
 
-        <ImageView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/nothing"
-            android:id="@+id/imageView7"
-            android:padding="0dp"
-            android:layout_margin="0dp"
-            android:scaleType="fitXY"
+            android:text="Nothing. All Clean."
+            android:id="@+id/emptylist"
             android:layout_gravity="center_horizontal|top" />
+
 
     </FrameLayout>
 

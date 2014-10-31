@@ -10,22 +10,34 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.SeekBar;
 
 import com.self.app.pojo.Task;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class ShowTasks extends Activity {
+
+    DBAccessHelper dbhelper;
 
     private ListView listview;
     private Button btnAddTask;
     private Context context;
     private EditText result;
+
+    private Task task = new Task();
+    List<Task> taskList = new ArrayList<Task>();
+    List<String> tasks = new ArrayList<String>();
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +45,9 @@ public class ShowTasks extends Activity {
         setContentView(R.layout.activity_show_tasks);
         context = this;
         listview = (ListView) findViewById(R.id.tasks_list);
-        btnAddTask  = (Button) findViewById(R.id.add_task);
+        listview.setEmptyView(findViewById(android.R.id.empty));
 
+        btnAddTask  = (Button) findViewById(R.id.add_task);
         btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -43,26 +56,39 @@ public class ShowTasks extends Activity {
             LayoutInflater li = LayoutInflater.from(context);
             View promptsView = li.inflate(R.layout.dialog_add_task, null);
 
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                    context);
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
             // set prompts.xml to alertdialog builder
             alertDialogBuilder.setView(promptsView);
 
-            final EditText userInput = (EditText) promptsView
-                    .findViewById(R.id.label);
+            final EditText label = (EditText) promptsView.findViewById(R.id.label);
+            final SeekBar seekbar = (SeekBar) promptsView.findViewById(R.id.priority_bar);
+            final DatePicker datepicker = (DatePicker) promptsView.findViewById(R.id.datePicker);
 
             // set dialog message
             alertDialogBuilder
                     .setCancelable(false)
                     .setPositiveButton("DONE",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // TODO: Insert values to db here
-                                    System.out.println("LABEL INPUT: " + userInput.getText());
-                                    result.setText(userInput.getText());
-                                }
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                            // Insert values to db here
+                            task.setLabel(label.getText().toString());
+                            task.setPrio(Task.priority.MEDIUM);
+                            task.setStatus(Task.taskstatus.ACTIVE);
+                            task.setCreatedTime(System.currentTimeMillis());
+                            Calendar calendar = new GregorianCalendar(datepicker.getYear(), datepicker.getMonth(), datepicker.getDayOfMonth());
+                            task.setDeadline(calendar.getTimeInMillis());
+                            dbhelper.insertTask(task);
+                            tasks.add(task.getLabel());
+                            if(null != adapter){
+                                adapter.notifyDataSetChanged();
                             }
+                            else{
+                                adapter = new ArrayAdapter<String>(ShowTasks.this, android.R.layout.simple_list_item_1, tasks);
+                                listview.setAdapter(adapter);
+                            }
+                            }
+                        }
                     );
 
 
@@ -77,16 +103,17 @@ public class ShowTasks extends Activity {
 
 
         System.out.println("INITIATING...");
+        dbhelper = new DBAccessHelper(this);
+        //dbhelper.insertTask(new Task("new task", System.currentTimeMillis(), System.currentTimeMillis(), Task.priority.MEDIUM, Task.taskstatus.ACTIVE, 0));
+        //dbhelper.insertTask(new Task("new task", System.currentTimeMillis(), System.currentTimeMillis(), Task.priority.MEDIUM, Task.taskstatus.ACTIVE, 0));
 
         // Fetch sample records if they exist
-        DBAccessHelper dbhelper = new DBAccessHelper(this);
-        List<Task> taskList = dbhelper.fetchAllTasks();
-        List<String> tasks = new ArrayList<String>();
+        taskList = dbhelper.fetchAllTasks();
+        tasks = new ArrayList<String>();
 
         // Handle No Tasks Scenario
         if(null == taskList || taskList.size()<=0){
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(ShowTasks.this, android.R.layout.simple_list_item_1, android.R.id.empty,  new String[]{});
-            listview.setAdapter(adapter);
+            listview.setAdapter(null);
             return;
         }
 
@@ -96,9 +123,7 @@ public class ShowTasks extends Activity {
 
 
         System.out.println("UI DISPLAY..");
-
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(ShowTasks.this, android.R.layout.simple_list_item_1, tasks);
+        adapter = new ArrayAdapter<String>(ShowTasks.this, android.R.layout.simple_list_item_1, tasks);
         listview.setAdapter(adapter);
         }
 
