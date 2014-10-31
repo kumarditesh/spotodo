@@ -22,12 +22,12 @@
         android:padding="10dp">
         </ListView>
 
-        <TextView
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nothing. All Clean."
             android:id="@+id/emptylist"
-            android:layout_gravity="center_horizontal|top" />
+            android:layout_gravity="center_horizontal|top"
+            android:src="@drawable/empty_basket" />
 
 
     </FrameLayout>

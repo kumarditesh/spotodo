@@ -28,8 +28,8 @@ public class HomeActivity extends Activity {
             @Override
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
-                Intent showTasksIntent = new Intent(HomeActivity.this, ShowTasks.class);
-                HomeActivity.this.startActivity(showTasksIntent);
+                Intent signInIntent = new Intent(HomeActivity.this, ShowTasks.class);
+                HomeActivity.this.startActivity(signInIntent);
                 HomeActivity.this.finish();
             }
         }, SPLASH_DISPLAY_LENGTH);

@@ -45,7 +45,7 @@ public class ShowTasks extends Activity {
         setContentView(R.layout.activity_show_tasks);
         context = this;
         listview = (ListView) findViewById(R.id.tasks_list);
-        listview.setEmptyView(findViewById(android.R.id.empty));
+        listview.setEmptyView(findViewById(R.id.emptylist));
 
         btnAddTask  = (Button) findViewById(R.id.add_task);
         btnAddTask.setOnClickListener(new View.OnClickListener() {
