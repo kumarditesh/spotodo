@@ -14,7 +14,7 @@ public class Constants {
     public static final String KEY_PRIO = "prio";
     public static final String KEY_PINNED = "pinned";
 
-    public static final String DATABASE_NAME= "db_todoapp";
+    public static final String DATABASE_NAME= "db_todoapp_ditesh";
     public static final int DATABASE_VERSION = 1;
 
     // Utility Queries

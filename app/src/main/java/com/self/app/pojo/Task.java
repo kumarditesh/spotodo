@@ -5,12 +5,12 @@ package com.self.app.pojo;
  */
 public class Task {
 
-    public enum priority{
+    public enum Priority {
         HIGH(0), MEDIUM(1), LOW(2);
 
         private final int value;
 
-        private priority(final int newValue) {
+        private Priority(final int newValue) {
             value = newValue;
         }
 
@@ -24,8 +24,8 @@ public class Task {
     private int id;
     private String label;
     private long createdTime;
-    private long  deadline;
-    private priority prio;
+    private Long  deadline;
+    private Priority prio;
     private taskstatus status;
     private int isPinned = 0;
 
@@ -38,19 +38,19 @@ public class Task {
         this.isPinned = isPinned;
     }
 
-    public long getDeadline() {
+    public Long getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(long deadline) {
+    public void setDeadline(Long deadline) {
         this.deadline = deadline;
     }
 
-    public priority getPrio() {
+    public Priority getPrio() {
         return prio;
     }
 
-    public void setPrio(priority prio) {
+    public void setPrio(Priority prio) {
         this.prio = prio;
     }
 
@@ -90,7 +90,7 @@ public class Task {
 
     public Task() {}
 
-    public Task(int id, String label, long createdTime, long deadline, priority prio, taskstatus status, int isPinned) {
+    public Task(int id, String label, long createdTime, Long deadline, Priority prio, taskstatus status, int isPinned) {
         this.id = id;
         this.label = label;
         this.createdTime = createdTime;
@@ -100,7 +100,7 @@ public class Task {
         this.isPinned = isPinned;
     }
 
-    public Task(String label, long createdTime, long deadline, priority prio, taskstatus status, int isPinned) {
+    public Task(String label, long createdTime, Long deadline, Priority prio, taskstatus status, int isPinned) {
         this.id = id;
         this.label = label;
         this.createdTime = createdTime;

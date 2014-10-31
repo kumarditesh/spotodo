@@ -48,7 +48,7 @@ public class DBAccessHelper extends SQLiteOpenHelper {
                 task = new Task();
                 task.setId(cur.getInt(0));
                 task.setLabel(cur.getString(1));
-                task.setPrio(Task.priority.values()[cur.getInt(2)]);
+                task.setPrio(Task.Priority.values()[cur.getInt(2)]);
                 task.setCreatedTime(cur.getLong(3));
                 task.setDeadline(cur.getLong(4));
                 task.setStatus(Task.taskstatus.valueOf(cur.getString(5)));

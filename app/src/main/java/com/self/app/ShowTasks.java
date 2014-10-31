@@ -4,14 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -19,6 +16,7 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 
 import com.self.app.pojo.Task;
+import com.self.app.task.row.RowViewAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,11 +31,8 @@ public class ShowTasks extends Activity {
     private Button btnAddTask;
     private Context context;
     private EditText result;
-
-    private Task task = new Task();
     List<Task> taskList = new ArrayList<Task>();
-    List<String> tasks = new ArrayList<String>();
-    ArrayAdapter<String> adapter;
+    RowViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,20 +67,23 @@ public class ShowTasks extends Activity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                             // Insert values to db here
+                            Task task = new Task();
                             task.setLabel(label.getText().toString());
-                            task.setPrio(Task.priority.MEDIUM);
+                            task.setPrio(Task.Priority.MEDIUM);
                             task.setStatus(Task.taskstatus.ACTIVE);
                             task.setCreatedTime(System.currentTimeMillis());
                             Calendar calendar = new GregorianCalendar(datepicker.getYear(), datepicker.getMonth(), datepicker.getDayOfMonth());
                             task.setDeadline(calendar.getTimeInMillis());
                             dbhelper.insertTask(task);
-                            tasks.add(task.getLabel());
                             if(null != adapter){
-                                adapter.notifyDataSetChanged();
+                                adapter.add(task);
                             }
                             else{
-                                adapter = new ArrayAdapter<String>(ShowTasks.this, android.R.layout.simple_list_item_1, tasks);
+                                List<Task> list = new ArrayList<Task>();
+                                list.add(task);
+                                adapter = new RowViewAdapter(ShowTasks.this,list);
                                 listview.setAdapter(adapter);
+                                adapter.setNotifyOnChange(true);
                             }
                             }
                         }
@@ -104,12 +102,13 @@ public class ShowTasks extends Activity {
 
         System.out.println("INITIATING...");
         dbhelper = new DBAccessHelper(this);
+        dbhelper.getWritableDatabase();
         //dbhelper.insertTask(new Task("new task", System.currentTimeMillis(), System.currentTimeMillis(), Task.priority.MEDIUM, Task.taskstatus.ACTIVE, 0));
         //dbhelper.insertTask(new Task("new task", System.currentTimeMillis(), System.currentTimeMillis(), Task.priority.MEDIUM, Task.taskstatus.ACTIVE, 0));
 
         // Fetch sample records if they exist
         taskList = dbhelper.fetchAllTasks();
-        tasks = new ArrayList<String>();
+        List<Task> tasks = new ArrayList<Task>();
 
         // Handle No Tasks Scenario
         if(null == taskList || taskList.size()<=0){
@@ -118,12 +117,13 @@ public class ShowTasks extends Activity {
         }
 
         for(Task task : taskList){
-            tasks.add(task.getLabel());
+            tasks.add(task);
         }
 
 
         System.out.println("UI DISPLAY..");
-        adapter = new ArrayAdapter<String>(ShowTasks.this, android.R.layout.simple_list_item_1, tasks);
+        adapter = new RowViewAdapter(ShowTasks.this, new ArrayList<Task>());
+        adapter.setNotifyOnChange(true);
         listview.setAdapter(adapter);
         }
 
