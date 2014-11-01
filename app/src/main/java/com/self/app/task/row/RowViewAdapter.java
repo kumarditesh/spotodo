@@ -1,6 +1,7 @@
 package com.self.app.task.row;
 
 import android.content.Context;
+import android.text.TextPaint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +22,6 @@ import java.util.List;
  */
 public class RowViewAdapter  extends ArrayAdapter<Task> {
 
-
-    {
-
-    }
-
     private final Context context;
     private final List<Task> values;
     private final LayoutInflater inflater;
@@ -41,17 +37,21 @@ public class RowViewAdapter  extends ArrayAdapter<Task> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View rowView = inflater.inflate(R.layout.task_row_brief, parent, false);
         TextView textTitleView = (TextView) rowView.findViewById(R.id.taskTitle);
-        textTitleView.setText(values.get(position).getLabel());
+        String title = values.get(position).getLabel() ;
 
+        textTitleView.setContentDescription(title);
+        textTitleView.setText(title);
+        textTitleView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                TextView tv= (TextView)v;
+                String title = tv.getContentDescription().toString();
+                tv.setText(DisplayUtils.getTextOfLength(title, tv.getPaint(),tv.getWidth()));
+            }
+        });
         TextView textSubtitleView = (TextView) rowView.findViewById(R.id.taskSubtitle);
-        textSubtitleView.setText(getSubtitleFromDeadline(values.get(position).getDeadline()));
-
+        textSubtitleView.setText(DisplayUtils.getSubtitleFromDeadline(values.get(position).getDeadline()));
 
         return rowView;
-    }
-
-    private String getSubtitleFromDeadline(Long deadline) {
-        //TODO
-        return (deadline == null) ? "" : new Date(deadline).toString();
     }
 }
