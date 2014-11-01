@@ -7,7 +7,7 @@
     android:background="#f6f1eb">
 
     <ImageView
-        android:layout_width="10dp"
+        android:layout_width="5dp"
         android:layout_height="match_parent"
         android:id="@+id/priorityColor"
         android:background="@android:color/holo_blue_light" />
@@ -26,17 +26,19 @@
             android:id="@+id/taskTitle"
             android:layout_weight="5"
             android:gravity="center_vertical"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:textColor="#787878" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="Date"
             android:id="@+id/taskSubtitle"
             android:gravity="center_vertical"
             android:textSize="13sp"
             android:textIsSelectable="false"
             android:layout_weight="1"
-            android:layout_marginBottom="2dp" />
+            android:layout_marginBottom="2dp"
+            android:textColor="#bcbcbc" />
     </LinearLayout>
 </LinearLayout>
