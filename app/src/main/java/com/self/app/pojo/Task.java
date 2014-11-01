@@ -1,21 +1,11 @@
 package com.self.app.pojo;
 
+import com.self.app.enums.Priority;
+
 /**
  * Created by yash on 30/10/14.
  */
 public class Task {
-
-    public enum Priority {
-        HIGH(0), MEDIUM(1), LOW(2);
-
-        private final int value;
-
-        private Priority(final int newValue) {
-            value = newValue;
-        }
-
-        public int getValue() { return value; }
-    }
 
     public enum taskstatus{
         ACTIVE, COMPLETED, DELETED
@@ -28,7 +18,6 @@ public class Task {
     private Priority prio;
     private taskstatus status;
     private int isPinned = 0;
-
 
     public int getIsPinned() {
         return isPinned;

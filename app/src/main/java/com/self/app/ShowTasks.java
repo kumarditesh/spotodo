@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SeekBar;
 
+import com.self.app.enums.Priority;
 import com.self.app.pojo.Task;
 import com.self.app.task.row.RowViewAdapter;
 
@@ -69,7 +70,7 @@ public class ShowTasks extends Activity {
                             // Insert values to db here
                             Task task = new Task();
                             task.setLabel(label.getText().toString());
-                            task.setPrio(Task.Priority.MEDIUM);
+                            task.setPrio(Priority.MEDIUM);
                             task.setStatus(Task.taskstatus.ACTIVE);
                             task.setCreatedTime(System.currentTimeMillis());
                             Calendar calendar = new GregorianCalendar(datepicker.getYear(), datepicker.getMonth(), datepicker.getDayOfMonth());

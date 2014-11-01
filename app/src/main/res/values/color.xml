@@ -140,4 +140,7 @@
     <color name="DarkBlue">#00008B</color>
     <color name="Navy">#000080</color>
     <color name="Black">#000000</color>
+    <color name="PRIO_HIGH_COLOR">#FF0000</color>
+    <color name="PRIO_LOW_COLOR">#F0F8FF</color>
+    <color name="PRIO_MEDIUM_COLOR">#00FFFF</color>
 </resources>

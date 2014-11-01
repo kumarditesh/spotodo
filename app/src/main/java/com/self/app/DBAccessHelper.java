@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
+import com.self.app.enums.Priority;
 import com.self.app.pojo.Task;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class DBAccessHelper extends SQLiteOpenHelper {
                 task = new Task();
                 task.setId(cur.getInt(0));
                 task.setLabel(cur.getString(1));
-                task.setPrio(Task.Priority.values()[cur.getInt(2)]);
+                task.setPrio(Priority.getPriorityFromValue(cur.getInt(2)));
                 task.setCreatedTime(cur.getLong(3));
                 task.setDeadline(cur.getLong(4));
                 task.setStatus(Task.taskstatus.valueOf(cur.getString(5)));

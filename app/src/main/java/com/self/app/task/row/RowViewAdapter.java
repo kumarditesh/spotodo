@@ -36,7 +36,9 @@ public class RowViewAdapter  extends ArrayAdapter<Task> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View rowView = inflater.inflate(R.layout.task_row_brief, parent, false);
         TextView textTitleView = (TextView) rowView.findViewById(R.id.taskTitle);
-        String title = values.get(position).getLabel() ;
+        Task task = values.get(position);
+
+        String title = task.getLabel() ;
 
         textTitleView.setContentDescription(title);
         textTitleView.setText(title);
@@ -45,11 +47,14 @@ public class RowViewAdapter  extends ArrayAdapter<Task> {
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
                 TextView tv= (TextView)v;
                 String title = tv.getContentDescription().toString();
-                tv.setText(DisplayUtils.getTextOfLength(title, tv.getPaint(),tv.getWidth()));
+                tv.setText(DisplayUtils.getTextOfLength(title, tv.getPaint(), tv.getWidth()));
             }
         });
         TextView textSubtitleView = (TextView) rowView.findViewById(R.id.taskSubtitle);
-        textSubtitleView.setText(DisplayUtils.getSubtitleFromDeadline(values.get(position).getDeadline()));
+        textSubtitleView.setText(DisplayUtils.getSubtitleFromDeadline(task.getDeadline()));
+
+        ImageView image = (ImageView) rowView.findViewById(R.id.priorityColor);
+        image.setBackgroundColor(task.getPrio().getColor());
 
         return rowView;
     }
