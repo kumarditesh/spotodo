@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.self.app.R;
 import com.self.app.pojo.Task;
-import com.self.app.pojo.TaskPojo;
 
 import java.util.Date;
 import java.util.List;

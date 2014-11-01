@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">App</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Spotodo</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_show_tasks">ShowTasks</string>
+    <string name="title_activity_show_tasks">Spot ToDo</string>
+    <string name="add_button_label">+</string>
 
 </resources>

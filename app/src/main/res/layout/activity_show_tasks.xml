@@ -6,6 +6,39 @@
     tools:context="com.self.app.ShowTasks"
     android:orientation="vertical" >
 
+    <GridLayout
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:columnCount="3"
+        android:rowCount="1"
+        android:background="#ffff1500"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Priority"
+            android:id="@+id/textView"
+            android:layout_columnSpan="1"
+            android:layout_gravity="left" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Deadline"
+            android:id="@+id/textView2"
+            android:layout_column="1"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Proximity"
+            android:id="@+id/textView3"
+            android:layout_column="2" />
+    </GridLayout>
+
     <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
@@ -19,7 +52,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_above="@+id/add_task"
-        android:padding="10dp">
+        android:divider="@android:color/transparent"
+        android:dividerHeight="2.0sp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
         </ListView>
 
         <ImageView
@@ -28,11 +64,7 @@
             android:id="@+id/emptylist"
             android:layout_gravity="center"
             android:src="@drawable/empty_basket" />
-
-
     </FrameLayout>
-
-
 
     <LinearLayout
         style="@android:style/ButtonBar"
@@ -43,17 +75,13 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="+"
+        android:layout_height="match_parent"
+        android:text="@string/add_button_label"
         android:id="@+id/add_task"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/task_list"
-        android:layout_margin="0px"
-        android:textSize="60px"
+        android:textSize="30sp"
         android:textColor="#fefefe"
         android:background="#ffff000a"
-        android:clickable="false"
-        android:capitalize="sentences" />
+        android:clickable="false"/>
     </LinearLayout>
 
 </LinearLayout>
